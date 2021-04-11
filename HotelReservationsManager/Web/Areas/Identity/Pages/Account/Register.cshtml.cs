@@ -40,6 +40,34 @@ namespace Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name ="First name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Middle name")]
+            public string MiddleName { get; set; }
+
+            [Required]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [Display(Name = "EGN")]
+            public string EGN { get; set; }
+
+            [Required]
+            [Display(Name = "Hire date")]
+            public DateTime HireDate { get; set; }
+
+            
+            [Display(Name = "Activate")]
+            public bool  isActive { get; set; }
+
+            
+            [Display(Name = "Make it administrator")]
+            public bool IsAdmin { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -50,11 +78,13 @@ namespace Web.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-        }
+            [Required]
+            [Display(Name = "Phone number")]
+            public string  PhoneNumber { get; set; }
+
+
+
+    }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -67,12 +97,11 @@ namespace Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new User { Id = Guid.NewGuid().ToString(), UserName = Input.Email, Email = Input.Email };
+                var user = new User { Id = Guid.NewGuid().ToString(), UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, MiddleName=Input.MiddleName, LastName=Input.LastName, EGN = Input.EGN, HireDate = Input.HireDate, IsActive = Input.isActive, isAdmin = Input.IsAdmin, PhoneNumber = Input.PhoneNumber};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
 

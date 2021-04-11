@@ -252,6 +252,11 @@ namespace Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "EGN", "Email", "EmailConfirmed", "FiredDate", "FirstName", "HireDate", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "isAdmin" },
+                values: new object[] { "f0e78d72-44ef-40ae-9314-ed86500532b7", 0, "dc138e42-aa71-4e19-901e-c74c0a791fe2", "7306078725", "adminAtanas@abv.bg", false, null, "Atanas", new DateTime(2002, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Ivanov", false, null, "Mihaylov", null, null, "AQAAAAEAACcQAAAAECLCaOk0rw4jW8/EPns8THKFdFC6y6QccI+E3AI2qw9hEHeN79JyV/T5j9zyV+pxlg==", "0877923606", false, null, false, "adminAtanas@abv.bg", true });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

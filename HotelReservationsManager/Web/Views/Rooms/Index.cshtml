@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Data.Entities.Room>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of all rooms";
 }
 
-<h1>Index</h1>
+<h1>List of all rooms</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Capacity)
+                capacity
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RoomType)
+                Room type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsFree)
+                is it free
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceAdult)
+                Price for adults
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceChild)
+                price for children
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Number)
+                room number
             </th>
             <th></th>
         </tr>

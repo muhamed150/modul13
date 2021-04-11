@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace Web.Controllers
 
         public RoomsController(HotelDbContext context)
         {
-            _context = context;
+            _context = context;            
         }
 
         // GET: Rooms

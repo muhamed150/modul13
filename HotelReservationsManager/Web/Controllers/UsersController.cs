@@ -24,6 +24,24 @@ namespace Web.Controllers
         {
             return View(await _context.Users.ToListAsync());
         }
+        //GET: EditUsers
+        public async Task<IActionResult> EditUsers()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
+        //GET: DeleteUsers
+        public async Task<IActionResult> DeleteUsers()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
+
+        //GET: LockUsers
+        public async Task<IActionResult> LockUsers()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
+
+
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
@@ -58,6 +76,7 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Id = Guid.NewGuid().ToString();
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -143,6 +162,59 @@ namespace Web.Controllers
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Users/Lock/5
+        public async Task<IActionResult> Lock(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Lock (string id, User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    user.Id = id;
+                    user.LockoutEnabled = true;
+                    user.LockoutEnd = DateTime.MaxValue;
+                    _context.Update(user);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
         }
 
         private bool UserExists(string id)

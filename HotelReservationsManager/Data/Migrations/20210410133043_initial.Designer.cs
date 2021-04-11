@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20210408091518_initial")]
+    [Migration("20210410133043_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,29 @@ namespace Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f0e78d72-44ef-40ae-9314-ed86500532b7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "dc138e42-aa71-4e19-901e-c74c0a791fe2",
+                            EGN = "7306078725",
+                            Email = "adminAtanas@abv.bg",
+                            EmailConfirmed = false,
+                            FirstName = "Atanas",
+                            HireDate = new DateTime(2002, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LastName = "Ivanov",
+                            LockoutEnabled = false,
+                            MiddleName = "Mihaylov",
+                            PasswordHash = "AQAAAAEAACcQAAAAECLCaOk0rw4jW8/EPns8THKFdFC6y6QccI+E3AI2qw9hEHeN79JyV/T5j9zyV+pxlg==",
+                            PhoneNumber = "0877923606",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "adminAtanas@abv.bg",
+                            isAdmin = true
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
